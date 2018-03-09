@@ -11,7 +11,7 @@
 
 
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "DisjointSet.h"
 
 DisjointSet::DisjointSet(int setSize)
