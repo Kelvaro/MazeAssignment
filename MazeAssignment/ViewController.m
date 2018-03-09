@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property (strong, nonatomic) IBOutlet UIView *MapConsole;
 
 @end
 
@@ -16,6 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _MapConsole.hidden=true;
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -25,5 +28,22 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)Movement:(id)sender {
+    
+}
+
+- (IBAction)Flashlight:(id)sender {
+    NSLog(@"Flashlight On");
+}
+
+- (IBAction)MapConsoleTrigger:(id)sender { //two double tap
+    
+    _MapConsole.hidden=!_MapConsole.hidden;
+    NSLog(@"double tap recognized!");
+}
+
+- (IBAction)ResetTrigger:(id)sender { //double tap
+    NSLog(@"Reset Location");
+}
 
 @end

@@ -14,7 +14,7 @@
 
 
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <stdlib.h>
 #include <time.h>
 #include "maze.h"
