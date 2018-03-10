@@ -3,6 +3,7 @@
 //
 
 #import "Renderer.h"
+#import "Lighting.h"
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
 #include <chrono>
@@ -48,6 +49,27 @@ enum
 
 @synthesize isRotating;
 @synthesize rotAngle;
+
+- (void)drawMaze{
+/*
+     for(int i = 0
+ 
+     for (int i=0; i< rows; i++) {
+         maze[i] = (MazeCell *)calloc(cols, sizeof(MazeCell));
+         for(int j=0; j<cols; j++) {
+             if(maze[i][j].northWallPresent)
+                 RenderWall(north)
+             if(maze[i][j].southWallPresent)
+                 RenderWall(south)
+             if(maze[i][j].eastWallPresent)
+                 RenderWall(east)
+             if(maze[i][j].westWallPresent)
+                 RenderWall(west)
+             }
+         }
+ */
+    
+}
 
 - (void)dealloc
 {

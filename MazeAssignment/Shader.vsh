@@ -32,7 +32,7 @@ void main()
         
         float nDotVP = max(0.0, dot(eyeNormal, normalize(lightPosition)));
         
-        v_color = diffuseColor * nDotVP;
+//        v_color = diffuseColor * nDotVP;
         v_normal = vec3(0, 0, 0);
         v_texcoord = vec2(0, 0);
     }

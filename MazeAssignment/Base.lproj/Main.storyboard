@@ -18,24 +18,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mv1-5d-tkg">
-                                <rect key="frame" x="312" y="177" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0fA-yj-baf">
                                 <rect key="frame" x="407" y="227" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="0.26336927816901406" colorSpace="calibratedWhite"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="0.10220462328767123" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BmD-bp-GRf">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="46"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a3H-d3-l64">
+                                        <rect key="frame" x="8" y="8" width="70" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" label="Flashlight"/>
+                                        <state key="normal" title="Flashlight">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="Flashlight:" destination="To6-VY-N50" eventType="touchUpInside" id="YoJ-nI-wf3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Jx-Kg-Yzz">
+                                        <rect key="frame" x="587" y="8" width="72" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Day/Night">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="DayNightSwitch:" destination="To6-VY-N50" eventType="touchUpInside" id="2fb-YB-JQf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sir-zZ-TXq">
+                                        <rect key="frame" x="310" y="8" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Fog">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="FogSwitch:" destination="To6-VY-N50" eventType="touchUpInside" id="KRP-zI-7p1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="0.095248287671232876" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="dRS-F2-Onl"/>
                         <connections>
                             <outlet property="delegate" destination="To6-VY-N50" id="Vgh-cU-zcs"/>
-                            <outletCollection property="gestureRecognizers" destination="elC-v7-Id4" appends="YES" id="5Qw-q0-lw1"/>
                             <outletCollection property="gestureRecognizers" destination="bSX-qQ-bix" appends="YES" id="9KI-lt-GOM"/>
                             <outletCollection property="gestureRecognizers" destination="2ge-Ct-3om" appends="YES" id="jla-Jd-NFU"/>
                         </connections>
@@ -45,11 +75,6 @@
                     </connections>
                 </glkViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="amh-mS-4U0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="2" id="elC-v7-Id4" userLabel="Flashlight Recognizer">
-                    <connections>
-                        <action selector="Flashlight:" destination="To6-VY-N50" id="8ky-Rj-aVP"/>
-                    </connections>
-                </pongPressGestureRecognizer>
                 <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="bSX-qQ-bix" userLabel="Map Console Recognizer">
                     <connections>
                         <action selector="MapConsoleTrigger:" destination="To6-VY-N50" id="pGZ-g3-C7o"/>
@@ -61,7 +86,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="164" y="-12"/>
+            <point key="canvasLocation" x="163.26836581709148" y="-12"/>
         </scene>
     </scenes>
 </document>

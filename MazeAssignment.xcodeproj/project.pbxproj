@@ -20,6 +20,7 @@
 		83D8660F20545FBA00BE3863 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 83D8660920545FBA00BE3863 /* Shader.vsh */; };
 		83D8661020545FBA00BE3863 /* crate.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 83D8660B20545FBA00BE3863 /* crate.jpg */; };
 		83D866112054681600BE3863 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72DC042020508423000382C9 /* Main.storyboard */; };
+		83D8661420548D3600BE3863 /* Lighting.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8661320548D3600BE3863 /* Lighting.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		83D8660920545FBA00BE3863 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		83D8660A20545FBA00BE3863 /* GLESRenderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLESRenderer.hpp; sourceTree = "<group>"; };
 		83D8660B20545FBA00BE3863 /* crate.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crate.jpg; sourceTree = "<group>"; };
+		83D8661220548D3600BE3863 /* Lighting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lighting.h; sourceTree = "<group>"; };
+		83D8661320548D3600BE3863 /* Lighting.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Lighting.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,8 @@
 		72DC041920508423000382C9 /* MazeAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				83D8661220548D3600BE3863 /* Lighting.h */,
+				83D8661320548D3600BE3863 /* Lighting.m */,
 				83D8660B20545FBA00BE3863 /* crate.jpg */,
 				83D8660820545FBA00BE3863 /* GLESRenderer.cpp */,
 				83D8660A20545FBA00BE3863 /* GLESRenderer.hpp */,
@@ -177,6 +182,7 @@
 				72DC041F20508423000382C9 /* ViewController.m in Sources */,
 				83D8660E20545FBA00BE3863 /* GLESRenderer.cpp in Sources */,
 				72DC042A20508423000382C9 /* main.m in Sources */,
+				83D8661420548D3600BE3863 /* Lighting.m in Sources */,
 				72DC04342050842E000382C9 /* maze.cpp in Sources */,
 				72DC041C20508423000382C9 /* AppDelegate.m in Sources */,
 				83D8660D20545FBA00BE3863 /* Renderer.mm in Sources */,

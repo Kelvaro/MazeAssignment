@@ -17,6 +17,7 @@
 @end
 
 bool light;
+bool day;
 @implementation ViewController
 
 - (void)viewDidLoad {
@@ -27,6 +28,7 @@ bool light;
     [glesRenderer setup:view];
     [glesRenderer loadModels];
     light = false;
+    day=true;
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -49,6 +51,8 @@ bool light;
 - (IBAction)Movement:(id)sender {
     
 }
+- (IBAction)FogSwitch:(id)sender {
+}
 
 - (IBAction)Flashlight:(id)sender {
     if(light){
@@ -63,13 +67,23 @@ bool light;
 }
 
 - (IBAction)MapConsoleTrigger:(id)sender { //two double tap
-    
     _MapConsole.hidden=!_MapConsole.hidden;
     NSLog(@"double tap recognized!");
 }
 
 - (IBAction)ResetTrigger:(id)sender { //double tap
     NSLog(@"Reset Location");
+}
+- (IBAction)DayNightSwitch:(id)sender {
+    if(day){
+        NSLog(@"Day to Night, Night to Day");
+        day=false;
+    }
+    else{
+        NSLog(@"Night to Day, Day to Night");
+        day=true;
+    }
+
 }
 
 @end
