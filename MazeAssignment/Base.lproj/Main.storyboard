@@ -35,8 +35,9 @@
                         <viewLayoutGuide key="safeArea" id="dRS-F2-Onl"/>
                         <connections>
                             <outlet property="delegate" destination="To6-VY-N50" id="Vgh-cU-zcs"/>
-                            <outletCollection property="gestureRecognizers" destination="TFi-a2-J5r" appends="YES" id="qGl-6y-QPb"/>
-                            <outletCollection property="gestureRecognizers" destination="oD2-Rl-YOE" appends="YES" id="83D-ll-8W3"/>
+                            <outletCollection property="gestureRecognizers" destination="elC-v7-Id4" appends="YES" id="5Qw-q0-lw1"/>
+                            <outletCollection property="gestureRecognizers" destination="bSX-qQ-bix" appends="YES" id="9KI-lt-GOM"/>
+                            <outletCollection property="gestureRecognizers" destination="2ge-Ct-3om" appends="YES" id="jla-Jd-NFU"/>
                         </connections>
                     </glkView>
                     <connections>
@@ -44,26 +45,21 @@
                     </connections>
                 </glkViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="amh-mS-4U0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer delaysTouchesEnded="NO" numberOfTapsRequired="2" numberOfTouchesRequired="2" id="TFi-a2-J5r">
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="2" id="elC-v7-Id4" userLabel="Flashlight Recognizer">
                     <connections>
-                        <action selector="MapConsoleTrigger:" destination="To6-VY-N50" id="eAK-FZ-KLL"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer numberOfTapsRequired="2" id="WqG-9e-nOP">
-                    <connections>
-                        <action selector="ResetTrigger:" destination="To6-VY-N50" id="hwk-vh-wwD"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="oD2-Rl-YOE">
-                    <connections>
-                        <action selector="Movement:" destination="To6-VY-N50" id="jmN-L9-Qtd"/>
-                    </connections>
-                </panGestureRecognizer>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="HDZ-ea-oXI">
-                    <connections>
-                        <action selector="Flashlight:" destination="To6-VY-N50" id="rze-uM-Xje"/>
+                        <action selector="Flashlight:" destination="To6-VY-N50" id="8ky-Rj-aVP"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="bSX-qQ-bix" userLabel="Map Console Recognizer">
+                    <connections>
+                        <action selector="MapConsoleTrigger:" destination="To6-VY-N50" id="pGZ-g3-C7o"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="2ge-Ct-3om" userLabel="Reset Recognizer">
+                    <connections>
+                        <action selector="ResetTrigger:" destination="To6-VY-N50" id="qH8-Of-Dbb"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="164" y="-12"/>
         </scene>

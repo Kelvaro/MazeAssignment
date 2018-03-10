@@ -8,17 +8,25 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController (){
+    Renderer *glesRenderer;
+    
+}
 @property (strong, nonatomic) IBOutlet UIView *MapConsole;
 
 @end
 
+bool light;
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     _MapConsole.hidden=true;
-    
+    glesRenderer = [[Renderer alloc] init];
+    GLKView *view = (GLKView *)self.view;
+    [glesRenderer setup:view];
+    [glesRenderer loadModels];
+    light = false;
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -28,12 +36,30 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)update
+{
+    [glesRenderer update]; // ###
+}
+
+- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
+{
+    [glesRenderer draw:rect]; // ###
+}
+
 - (IBAction)Movement:(id)sender {
     
 }
 
 - (IBAction)Flashlight:(id)sender {
-    NSLog(@"Flashlight On");
+    if(light){
+        NSLog(@"Flashlight Off");
+        light=false;
+
+    }
+    else{
+        NSLog(@"Flashlight On");
+        light=true;
+    }
 }
 
 - (IBAction)MapConsoleTrigger:(id)sender { //two double tap
