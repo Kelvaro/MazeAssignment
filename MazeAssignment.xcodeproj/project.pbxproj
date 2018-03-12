@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BBD7F1D20561575005E05FA /* MazeGen.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD7F1C20561575005E05FA /* MazeGen.mm */; };
 		72DC041C20508423000382C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 72DC041B20508423000382C9 /* AppDelegate.m */; };
 		72DC041F20508423000382C9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72DC041E20508423000382C9 /* ViewController.m */; };
 		72DC042420508423000382C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72DC042320508423000382C9 /* Assets.xcassets */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1BBD7F1C20561575005E05FA /* MazeGen.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MazeGen.mm; sourceTree = "<group>"; };
+		1BBD7F1E20561599005E05FA /* MazeGen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MazeGen.h; sourceTree = "<group>"; };
 		72DC041720508423000382C9 /* MazeAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MazeAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72DC041A20508423000382C9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		72DC041B20508423000382C9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -101,6 +104,8 @@
 				72DC042520508423000382C9 /* LaunchScreen.storyboard */,
 				72DC042820508423000382C9 /* Info.plist */,
 				72DC042920508423000382C9 /* main.m */,
+				1BBD7F1C20561575005E05FA /* MazeGen.mm */,
+				1BBD7F1E20561599005E05FA /* MazeGen.h */,
 			);
 			path = MazeAssignment;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 				72DC04342050842E000382C9 /* maze.cpp in Sources */,
 				72DC041C20508423000382C9 /* AppDelegate.m in Sources */,
 				83D8660D20545FBA00BE3863 /* Renderer.mm in Sources */,
+				1BBD7F1D20561575005E05FA /* MazeGen.mm in Sources */,
 				72DC04352050842E000382C9 /* DisjointSet.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
