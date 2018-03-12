@@ -29,6 +29,7 @@ bool day;
     [glesRenderer loadModels];
     light = false;
     day=true;
+    [glesRenderer drawMaze];
     // Do any additional setup after loading the view, typically from a nib.
 }
 

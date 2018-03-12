@@ -5,7 +5,7 @@
 #ifndef Renderer_h
 #define Renderer_h
 #import <GLKit/GLKit.h>
-#import "maze.h"
+#import "MazeGen.h"
 
 @interface Renderer : NSObject
 

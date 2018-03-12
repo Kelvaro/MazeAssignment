@@ -122,6 +122,7 @@ void Maze::Create()
 
 }
 
+
 MazeCell Maze::GetCell(int r, int c)
 {
 	return maze[r][c];

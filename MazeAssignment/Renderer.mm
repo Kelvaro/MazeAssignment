@@ -8,6 +8,7 @@
 #import <GLKit/GLKit.h>
 #include <chrono>
 #include "GLESRenderer.hpp"
+#import "MazeGen.h"
 
 // Uniform index.
 enum
@@ -35,12 +36,16 @@ enum
     GLuint programObject;
     GLuint crateTexture;
     std::chrono::time_point<std::chrono::steady_clock> lastTime;
-
+    
+    MazeGen *mazeGen;
+    
     GLKMatrix4 mvp;
     GLKMatrix3 normalMatrix;
 
     float *vertices, *normals, *texCoords;
     int *indices, numIndices;
+    
+    
 }
 
 @end
@@ -51,8 +56,10 @@ enum
 @synthesize rotAngle;
 
 - (void)drawMaze{
+    
+    
 /*
-     for(int i = 0
+     
  
      for (int i=0; i< rows; i++) {
          maze[i] = (MazeCell *)calloc(cols, sizeof(MazeCell));
@@ -105,6 +112,10 @@ enum
     glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
     glEnable(GL_DEPTH_TEST);
     lastTime = std::chrono::steady_clock::now();
+    
+    mazeGen = [[MazeGen alloc] init];
+    
+    [mazeGen GenMaze:4 cols:4]; //because this dipshit objective C doen't take the first argument differently than other SDK/IDE's it's called GenMaze instead of Row.
 }
 
 - (void)update
