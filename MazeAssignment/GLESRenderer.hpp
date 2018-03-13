@@ -22,7 +22,8 @@ public:
 
     int GenCube(float scale, float **vertices, float **normals,
                 float **texCoords, int **indices);
-
+    int GenQuad(float scale, float **vertices, float **normals,
+                float **texCoords, int **indices);
 };
 
 #endif /* GLESRenderer_hpp */

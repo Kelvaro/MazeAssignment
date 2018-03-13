@@ -1,5 +1,5 @@
 #version 300 es
-
+//night
 layout(location = 0) in vec4 position;
 layout(location = 1) in vec4 color;
 layout(location = 2) in vec3 normal;
@@ -27,8 +27,8 @@ void main()
     } else {
         // Diffuse shading
         vec3 eyeNormal = normalize(normalMatrix * normal);
-        vec3 lightPosition = vec3(5, 2.5, 10);
-        vec4 diffuseColor = vec4(1.5, 1.5, 1.50, 1.50);
+        vec3 lightPosition = vec3(0.25, 0.5, 0.5);
+        vec4 diffuseColor = vec4(0.5, 0.5, 0.5, 0.5);
         
         float nDotVP = max(0.0, dot(eyeNormal, normalize(lightPosition)));
         
@@ -39,3 +39,4 @@ void main()
     
     gl_Position = modelViewProjectionMatrix * position;
 }
+

@@ -1,5 +1,5 @@
 #version 300 es
-
+//night
 precision highp float;
 in vec4 v_color;
 in vec3 v_normal;
@@ -16,8 +16,8 @@ void main()
 {
     if (!passThrough && shadeInFrag) {
         vec3 eyeNormal = normalize(normalMatrix * v_normal);
-        vec3 lightPosition = vec3(5, 2.5, 10);
-        vec4 diffuseColor = vec4(1.5, 1.5, 1.50, 1.50);
+        vec3 lightPosition = vec3(.25, 0.5, .25);
+        vec4 diffuseColor = vec4(0.5, 0.5, 0.5, 0.5);
         
         float nDotVP = max(0.0, dot(eyeNormal, normalize(lightPosition)));
         

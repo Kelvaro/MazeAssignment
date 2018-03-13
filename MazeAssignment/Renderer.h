@@ -5,7 +5,6 @@
 #ifndef Renderer_h
 #define Renderer_h
 #import <GLKit/GLKit.h>
-#import "MazeGen.h"
 
 @interface Renderer : NSObject
 
@@ -17,8 +16,9 @@
 - (void)loadModels;
 - (void)update;
 - (void)draw:(CGRect)drawRect;
-- (void)drawMaze;
-
+- (void)ShaderToggle;
+- (void)Flashlight;
+- (void)Fog;
 @end
 
 #endif /* Renderer_h */
