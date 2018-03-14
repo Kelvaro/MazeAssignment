@@ -18,7 +18,7 @@
 - (void)draw:(CGRect)drawRect;
 - (void)DayNightToggle;
 - (void)FlashlightToggle;
-- (void)FogToggle;
+- (void)FogToggle:(char)para;
 @end
 
 #endif /* Renderer_h */

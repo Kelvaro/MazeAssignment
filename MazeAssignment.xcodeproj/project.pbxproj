@@ -16,6 +16,12 @@
 		72DC04342050842E000382C9 /* maze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72DC04312050842E000382C9 /* maze.cpp */; };
 		72DC04352050842E000382C9 /* DisjointSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72DC04322050842E000382C9 /* DisjointSet.cpp */; };
 		8306DB9E20598C8400A6E602 /* floor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8306DB9D20598C8400A6E602 /* floor.jpg */; };
+		8306DBA32059C6DF00A6E602 /* wall1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8306DB9F2059C6DF00A6E602 /* wall1.jpg */; };
+		8306DBA42059C6DF00A6E602 /* wall2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8306DBA02059C6DF00A6E602 /* wall2.jpg */; };
+		8306DBA52059C6DF00A6E602 /* wall3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8306DBA12059C6DF00A6E602 /* wall3.jpg */; };
+		8306DBA62059C6DF00A6E602 /* wall4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8306DBA22059C6DF00A6E602 /* wall4.jpg */; };
+		8306DBA92059C7FF00A6E602 /* ShaderE.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 8306DBA72059C7FE00A6E602 /* ShaderE.vsh */; };
+		8306DBAA2059C7FF00A6E602 /* ShaderE.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 8306DBA82059C7FE00A6E602 /* ShaderE.fsh */; };
 		835CFEDA20585A0E0033DE00 /* ShaderB.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 835CFED420585A0D0033DE00 /* ShaderB.vsh */; };
 		835CFEDB20585A0E0033DE00 /* ShaderD.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 835CFED520585A0D0033DE00 /* ShaderD.vsh */; };
 		835CFEDD20585A0E0033DE00 /* ShaderC.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 835CFED720585A0E0033DE00 /* ShaderC.vsh */; };
@@ -49,6 +55,12 @@
 		72DC04322050842E000382C9 /* DisjointSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DisjointSet.cpp; sourceTree = "<group>"; };
 		72DC04332050842E000382C9 /* maze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maze.h; sourceTree = "<group>"; };
 		8306DB9D20598C8400A6E602 /* floor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = floor.jpg; sourceTree = "<group>"; };
+		8306DB9F2059C6DF00A6E602 /* wall1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wall1.jpg; sourceTree = "<group>"; };
+		8306DBA02059C6DF00A6E602 /* wall2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wall2.jpg; sourceTree = "<group>"; };
+		8306DBA12059C6DF00A6E602 /* wall3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wall3.jpg; sourceTree = "<group>"; };
+		8306DBA22059C6DF00A6E602 /* wall4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wall4.jpg; sourceTree = "<group>"; };
+		8306DBA72059C7FE00A6E602 /* ShaderE.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderE.vsh; sourceTree = "<group>"; };
+		8306DBA82059C7FE00A6E602 /* ShaderE.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderE.fsh; sourceTree = "<group>"; };
 		835CFED420585A0D0033DE00 /* ShaderB.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderB.vsh; sourceTree = "<group>"; };
 		835CFED520585A0D0033DE00 /* ShaderD.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderD.vsh; sourceTree = "<group>"; };
 		835CFED720585A0E0033DE00 /* ShaderC.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderC.vsh; sourceTree = "<group>"; };
@@ -96,6 +108,10 @@
 		72DC041920508423000382C9 /* MazeAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				8306DB9F2059C6DF00A6E602 /* wall1.jpg */,
+				8306DBA02059C6DF00A6E602 /* wall2.jpg */,
+				8306DBA12059C6DF00A6E602 /* wall3.jpg */,
+				8306DBA22059C6DF00A6E602 /* wall4.jpg */,
 				8306DB9D20598C8400A6E602 /* floor.jpg */,
 				72DC041A20508423000382C9 /* AppDelegate.h */,
 				72DC041B20508423000382C9 /* AppDelegate.m */,
@@ -125,6 +141,8 @@
 				835CFED720585A0E0033DE00 /* ShaderC.vsh */,
 				835CFED920585A0E0033DE00 /* ShaderD.fsh */,
 				835CFED520585A0D0033DE00 /* ShaderD.vsh */,
+				8306DBA82059C7FE00A6E602 /* ShaderE.fsh */,
+				8306DBA72059C7FE00A6E602 /* ShaderE.vsh */,
 				72DC041D20508423000382C9 /* ViewController.h */,
 				72DC041E20508423000382C9 /* ViewController.m */,
 			);
@@ -191,13 +209,19 @@
 			files = (
 				83D8660C20545FBA00BE3863 /* Shader.fsh in Resources */,
 				835CFEDD20585A0E0033DE00 /* ShaderC.vsh in Resources */,
+				8306DBAA2059C7FF00A6E602 /* ShaderE.fsh in Resources */,
+				8306DBA42059C6DF00A6E602 /* wall2.jpg in Resources */,
 				8306DB9E20598C8400A6E602 /* floor.jpg in Resources */,
 				72DC042720508423000382C9 /* LaunchScreen.storyboard in Resources */,
 				72DC042420508423000382C9 /* Assets.xcassets in Resources */,
+				8306DBA92059C7FF00A6E602 /* ShaderE.vsh in Resources */,
 				83D866112054681600BE3863 /* Main.storyboard in Resources */,
 				835CFEE1205860FD0033DE00 /* ShaderB.fsh in Resources */,
+				8306DBA32059C6DF00A6E602 /* wall1.jpg in Resources */,
 				83D8661020545FBA00BE3863 /* crate.jpg in Resources */,
 				835CFEDB20585A0E0033DE00 /* ShaderD.vsh in Resources */,
+				8306DBA52059C6DF00A6E602 /* wall3.jpg in Resources */,
+				8306DBA62059C6DF00A6E602 /* wall4.jpg in Resources */,
 				835CFEDA20585A0E0033DE00 /* ShaderB.vsh in Resources */,
 				835CFEDF20585A0E0033DE00 /* ShaderD.fsh in Resources */,
 				835CFEDE20585A0E0033DE00 /* ShaderC.fsh in Resources */,
