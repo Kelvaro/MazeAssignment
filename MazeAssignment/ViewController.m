@@ -29,7 +29,7 @@ bool day;
     [glesRenderer loadModels];
     light = false;
     day=true;
-    [glesRenderer drawMaze];
+//    [glesRenderer drawMaze];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -53,18 +53,11 @@ bool day;
     
 }
 - (IBAction)FogSwitch:(id)sender {
+    [glesRenderer Fog];
 }
 
 - (IBAction)Flashlight:(id)sender {
-    if(light){
-        NSLog(@"Flashlight Off");
-        light=false;
-
-    }
-    else{
-        NSLog(@"Flashlight On");
-        light=true;
-    }
+    [glesRenderer Flashlight];
 }
 
 - (IBAction)MapConsoleTrigger:(id)sender { //two double tap
@@ -76,14 +69,7 @@ bool day;
     NSLog(@"Reset Location");
 }
 - (IBAction)DayNightSwitch:(id)sender {
-    if(day){
-        NSLog(@"Day to Night, Night to Day");
-        day=false;
-    }
-    else{
-        NSLog(@"Night to Day, Day to Night");
-        day=true;
-    }
+    [glesRenderer ShaderToggle];
 
 }
 

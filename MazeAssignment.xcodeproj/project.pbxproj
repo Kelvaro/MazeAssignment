@@ -15,6 +15,12 @@
 		72DC042A20508423000382C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 72DC042920508423000382C9 /* main.m */; };
 		72DC04342050842E000382C9 /* maze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72DC04312050842E000382C9 /* maze.cpp */; };
 		72DC04352050842E000382C9 /* DisjointSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72DC04322050842E000382C9 /* DisjointSet.cpp */; };
+		835CFEDA20585A0E0033DE00 /* ShaderB.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 835CFED420585A0D0033DE00 /* ShaderB.vsh */; };
+		835CFEDB20585A0E0033DE00 /* ShaderD.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 835CFED520585A0D0033DE00 /* ShaderD.vsh */; };
+		835CFEDD20585A0E0033DE00 /* ShaderC.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 835CFED720585A0E0033DE00 /* ShaderC.vsh */; };
+		835CFEDE20585A0E0033DE00 /* ShaderC.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 835CFED820585A0E0033DE00 /* ShaderC.fsh */; };
+		835CFEDF20585A0E0033DE00 /* ShaderD.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 835CFED920585A0E0033DE00 /* ShaderD.fsh */; };
+		835CFEE1205860FD0033DE00 /* ShaderB.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 835CFEE0205860FD0033DE00 /* ShaderB.fsh */; };
 		83D8660C20545FBA00BE3863 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 83D8660620545FB900BE3863 /* Shader.fsh */; };
 		83D8660D20545FBA00BE3863 /* Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 83D8660720545FBA00BE3863 /* Renderer.mm */; };
 		83D8660E20545FBA00BE3863 /* GLESRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83D8660820545FBA00BE3863 /* GLESRenderer.cpp */; };
@@ -41,6 +47,12 @@
 		72DC04312050842E000382C9 /* maze.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maze.cpp; sourceTree = "<group>"; };
 		72DC04322050842E000382C9 /* DisjointSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DisjointSet.cpp; sourceTree = "<group>"; };
 		72DC04332050842E000382C9 /* maze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maze.h; sourceTree = "<group>"; };
+		835CFED420585A0D0033DE00 /* ShaderB.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderB.vsh; sourceTree = "<group>"; };
+		835CFED520585A0D0033DE00 /* ShaderD.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderD.vsh; sourceTree = "<group>"; };
+		835CFED720585A0E0033DE00 /* ShaderC.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderC.vsh; sourceTree = "<group>"; };
+		835CFED820585A0E0033DE00 /* ShaderC.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderC.fsh; sourceTree = "<group>"; };
+		835CFED920585A0E0033DE00 /* ShaderD.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderD.fsh; sourceTree = "<group>"; };
+		835CFEE0205860FD0033DE00 /* ShaderB.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShaderB.fsh; sourceTree = "<group>"; };
 		83D8660520545FB900BE3863 /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		83D8660620545FB900BE3863 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
 		83D8660720545FBA00BE3863 /* Renderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Renderer.mm; sourceTree = "<group>"; };
@@ -82,30 +94,36 @@
 		72DC041920508423000382C9 /* MazeAssignment */ = {
 			isa = PBXGroup;
 			children = (
-				83D8661220548D3600BE3863 /* Lighting.h */,
-				83D8661320548D3600BE3863 /* Lighting.m */,
+				72DC041A20508423000382C9 /* AppDelegate.h */,
+				72DC041B20508423000382C9 /* AppDelegate.m */,
+				72DC042320508423000382C9 /* Assets.xcassets */,
 				83D8660B20545FBA00BE3863 /* crate.jpg */,
+				72DC04322050842E000382C9 /* DisjointSet.cpp */,
+				72DC04302050842E000382C9 /* DisjointSet.h */,
 				83D8660820545FBA00BE3863 /* GLESRenderer.cpp */,
 				83D8660A20545FBA00BE3863 /* GLESRenderer.hpp */,
+				72DC042820508423000382C9 /* Info.plist */,
+				72DC042520508423000382C9 /* LaunchScreen.storyboard */,
+				83D8661220548D3600BE3863 /* Lighting.h */,
+				83D8661320548D3600BE3863 /* Lighting.m */,
+				72DC042920508423000382C9 /* main.m */,
+				72DC042020508423000382C9 /* Main.storyboard */,
+				72DC04312050842E000382C9 /* maze.cpp */,
+				72DC04332050842E000382C9 /* maze.h */,
+				1BBD7F1E20561599005E05FA /* MazeGen.h */,
+				1BBD7F1C20561575005E05FA /* MazeGen.mm */,
 				83D8660520545FB900BE3863 /* Renderer.h */,
 				83D8660720545FBA00BE3863 /* Renderer.mm */,
 				83D8660620545FB900BE3863 /* Shader.fsh */,
 				83D8660920545FBA00BE3863 /* Shader.vsh */,
-				72DC04322050842E000382C9 /* DisjointSet.cpp */,
-				72DC04302050842E000382C9 /* DisjointSet.h */,
-				72DC04312050842E000382C9 /* maze.cpp */,
-				72DC04332050842E000382C9 /* maze.h */,
-				72DC041A20508423000382C9 /* AppDelegate.h */,
-				72DC041B20508423000382C9 /* AppDelegate.m */,
+				835CFEE0205860FD0033DE00 /* ShaderB.fsh */,
+				835CFED420585A0D0033DE00 /* ShaderB.vsh */,
+				835CFED820585A0E0033DE00 /* ShaderC.fsh */,
+				835CFED720585A0E0033DE00 /* ShaderC.vsh */,
+				835CFED920585A0E0033DE00 /* ShaderD.fsh */,
+				835CFED520585A0D0033DE00 /* ShaderD.vsh */,
 				72DC041D20508423000382C9 /* ViewController.h */,
 				72DC041E20508423000382C9 /* ViewController.m */,
-				72DC042020508423000382C9 /* Main.storyboard */,
-				72DC042320508423000382C9 /* Assets.xcassets */,
-				72DC042520508423000382C9 /* LaunchScreen.storyboard */,
-				72DC042820508423000382C9 /* Info.plist */,
-				72DC042920508423000382C9 /* main.m */,
-				1BBD7F1C20561575005E05FA /* MazeGen.mm */,
-				1BBD7F1E20561599005E05FA /* MazeGen.h */,
 			);
 			path = MazeAssignment;
 			sourceTree = "<group>";
@@ -169,10 +187,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				83D8660C20545FBA00BE3863 /* Shader.fsh in Resources */,
+				835CFEDD20585A0E0033DE00 /* ShaderC.vsh in Resources */,
 				72DC042720508423000382C9 /* LaunchScreen.storyboard in Resources */,
 				72DC042420508423000382C9 /* Assets.xcassets in Resources */,
 				83D866112054681600BE3863 /* Main.storyboard in Resources */,
+				835CFEE1205860FD0033DE00 /* ShaderB.fsh in Resources */,
 				83D8661020545FBA00BE3863 /* crate.jpg in Resources */,
+				835CFEDB20585A0E0033DE00 /* ShaderD.vsh in Resources */,
+				835CFEDA20585A0E0033DE00 /* ShaderB.vsh in Resources */,
+				835CFEDF20585A0E0033DE00 /* ShaderD.fsh in Resources */,
+				835CFEDE20585A0E0033DE00 /* ShaderC.fsh in Resources */,
 				83D8660F20545FBA00BE3863 /* Shader.vsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -3,17 +3,16 @@
 //
 
 #import "Renderer.h"
-#import "Lighting.h"
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
 #include <chrono>
 #include "GLESRenderer.hpp"
-#import "MazeGen.h"
 
 // Uniform index.
 enum
 {
     UNIFORM_MODELVIEWPROJECTION_MATRIX,
+    UNIFORM_MODELVIEW_MATRIX,
     UNIFORM_NORMAL_MATRIX,
     UNIFORM_PASSTHROUGH,
     UNIFORM_SHADEINFRAG,
@@ -36,16 +35,12 @@ enum
     GLuint programObject;
     GLuint crateTexture;
     std::chrono::time_point<std::chrono::steady_clock> lastTime;
-    
-    MazeGen *mazeGen;
-    
-    GLKMatrix4 mvp;
+
+    GLKMatrix4 mvp, mv;
     GLKMatrix3 normalMatrix;
 
     float *vertices, *normals, *texCoords;
     int *indices, numIndices;
-    
-    
 }
 
 @end
@@ -55,28 +50,9 @@ enum
 @synthesize isRotating;
 @synthesize rotAngle;
 
-- (void)drawMaze{
-    
-    
-/*
-     
- 
-     for (int i=0; i< rows; i++) {
-         maze[i] = (MazeCell *)calloc(cols, sizeof(MazeCell));
-         for(int j=0; j<cols; j++) {
-             if(maze[i][j].northWallPresent)
-                 RenderWall(north)
-             if(maze[i][j].southWallPresent)
-                 RenderWall(south)
-             if(maze[i][j].eastWallPresent)
-                 RenderWall(east)
-             if(maze[i][j].westWallPresent)
-                 RenderWall(west)
-             }
-         }
- */
-    
-}
+bool tog, swip,foggy;
+char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fShaderStrC,*vShaderStrD,*fShaderStrD;
+
 
 - (void)dealloc
 {
@@ -86,10 +62,14 @@ enum
 - (void)loadModels
 {
     numIndices = glesRenderer.GenCube(1.0f, &vertices, &normals, &texCoords, &indices);
+ //   numIndices = glesRenderer.GenQuad(1.0f, &vertices, &normals, &texCoords, &indices);
 }
 
 - (void)setup:(GLKView *)view
 {
+    tog=true;
+    swip=false;
+    foggy=false;
     view.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
     
     if (!view.context) {
@@ -109,13 +89,9 @@ enum
     glBindTexture(GL_TEXTURE_2D, crateTexture);
     glUniform1i(uniforms[UNIFORM_TEXTURE], 0);
 
-    glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
+    glClearColor (1.0f, 1.0f, 1.0f, 1.0f );
     glEnable(GL_DEPTH_TEST);
     lastTime = std::chrono::steady_clock::now();
-    
-    mazeGen = [[MazeGen alloc] init];
-    
-    [mazeGen GenMaze:4 cols:4]; //because this dipshit objective C doen't take the first argument differently than other SDK/IDE's it's called GenMaze instead of Row.
 }
 
 - (void)update
@@ -138,13 +114,15 @@ enum
 
     float aspect = (float)theView.drawableWidth / (float)theView.drawableHeight;
     GLKMatrix4 perspective = GLKMatrix4MakePerspective(60.0f * M_PI / 180.0f, aspect, 1.0f, 20.0f);
-
+    
+    mv = mvp;
     mvp = GLKMatrix4Multiply(perspective, mvp);
 }
 
 - (void)draw:(CGRect)drawRect;
 {
     glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, FALSE, (const float *)mvp.m);
+    glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEW_MATRIX], 1, FALSE, (const float *)mv.m);
     glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, normalMatrix.m);
     glUniform1i(uniforms[UNIFORM_PASSTHROUGH], false);
     glUniform1i(uniforms[UNIFORM_SHADEINFRAG], true);
@@ -157,7 +135,7 @@ enum
                            GL_FALSE, 3 * sizeof ( GLfloat ), vertices );
     glEnableVertexAttribArray ( 0 );
 
-    glVertexAttrib4f ( 1, 1.0f, 0.0f, 0.0f, 1.0f );
+    glVertexAttrib4f ( 1, 1.0f, 1.0f, 1.0f, 1.0f );
 
     glVertexAttribPointer ( 2, 3, GL_FLOAT,
                            GL_FALSE, 3 * sizeof ( GLfloat ), normals );
@@ -175,14 +153,29 @@ enum
 - (bool)setupShaders
 {
     // Load shaders
-    char *vShaderStr = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:"Shader.vsh"] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:"Shader.vsh"] pathExtension]] cStringUsingEncoding:1]);
-    char *fShaderStr = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:"Shader.fsh"] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:"Shader.fsh"] pathExtension]] cStringUsingEncoding:1]);
-    programObject = glesRenderer.LoadProgram(vShaderStr, fShaderStr);
+    vShaderStrA = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:"Shader.vsh"] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:"Shader.vsh"] pathExtension]] cStringUsingEncoding:1]);
+    fShaderStrA = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:"Shader.fsh"] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:"Shader.fsh"] pathExtension]] cStringUsingEncoding:1]);
+            programObject = glesRenderer.LoadProgram(vShaderStrA, fShaderStrA);
+    
+    vShaderStrB = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:"ShaderB.vsh"] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:"ShaderB.vsh"] pathExtension]] cStringUsingEncoding:1]);
+    fShaderStrB = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:"ShaderB.fsh"] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:"ShaderB.fsh"] pathExtension]] cStringUsingEncoding:1]);
+
+    vShaderStrC = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:"ShaderC.vsh"] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:"ShaderC.vsh"] pathExtension]] cStringUsingEncoding:1]);
+    fShaderStrC = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:"ShaderC.fsh"] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:"ShaderC.fsh"] pathExtension]] cStringUsingEncoding:1]);
+    
+    
+    vShaderStrD = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:"ShaderD.vsh"] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:"ShaderD.vsh"] pathExtension]] cStringUsingEncoding:1]);
+    fShaderStrD = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:"ShaderD.fsh"] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:"ShaderD.fsh"] pathExtension]] cStringUsingEncoding:1]);
+    
+    programObject = glesRenderer.LoadProgram(vShaderStrA, fShaderStrA);
+    
+    
     if (programObject == 0)
         return false;
     
     // Set up uniform variables
     uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(programObject, "modelViewProjectionMatrix");
+    uniforms[UNIFORM_MODELVIEW_MATRIX] = glGetUniformLocation(programObject, "modelViewMatrix");
     uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(programObject, "normalMatrix");
     uniforms[UNIFORM_PASSTHROUGH] = glGetUniformLocation(programObject, "passThrough");
     uniforms[UNIFORM_SHADEINFRAG] = glGetUniformLocation(programObject, "shadeInFrag");
@@ -191,6 +184,57 @@ enum
     return true;
 }
 
+- (void)ShaderToggle{
+    if(tog){
+            programObject = glesRenderer.LoadProgram(vShaderStrB, fShaderStrB);
+        tog=false;
+    }
+    else{
+                    programObject = glesRenderer.LoadProgram(vShaderStrA, fShaderStrA);
+        tog=true;
+    }
+    uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(programObject, "modelViewProjectionMatrix");
+    uniforms[UNIFORM_MODELVIEW_MATRIX] = glGetUniformLocation(programObject, "modelViewMatrix");
+    uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(programObject, "normalMatrix");
+    uniforms[UNIFORM_PASSTHROUGH] = glGetUniformLocation(programObject, "passThrough");
+    uniforms[UNIFORM_SHADEINFRAG] = glGetUniformLocation(programObject, "shadeInFrag");
+    uniforms[UNIFORM_TEXTURE] = glGetUniformLocation(programObject, "texSampler");
+
+}
+
+-(void)Flashlight{
+    if(swip){
+        programObject = glesRenderer.LoadProgram(vShaderStrC, fShaderStrC);
+        swip=false;
+    }
+    else{
+        programObject = glesRenderer.LoadProgram(vShaderStrA, fShaderStrA);
+        swip=true;
+    }
+    uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(programObject, "modelViewProjectionMatrix");
+    uniforms[UNIFORM_MODELVIEW_MATRIX] = glGetUniformLocation(programObject, "modelViewMatrix");
+    uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(programObject, "normalMatrix");
+    uniforms[UNIFORM_PASSTHROUGH] = glGetUniformLocation(programObject, "passThrough");
+    uniforms[UNIFORM_SHADEINFRAG] = glGetUniformLocation(programObject, "shadeInFrag");
+    uniforms[UNIFORM_TEXTURE] = glGetUniformLocation(programObject, "texSampler");
+}
+
+-(void)Fog{
+    if(foggy){
+        programObject = glesRenderer.LoadProgram(vShaderStrD, fShaderStrD);
+        foggy=false;
+    }
+    else{
+        programObject = glesRenderer.LoadProgram(vShaderStrA, fShaderStrA);
+        foggy=true;
+    }
+    uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(programObject, "modelViewProjectionMatrix");
+    uniforms[UNIFORM_MODELVIEW_MATRIX] = glGetUniformLocation(programObject, "modelViewMatrix");
+    uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(programObject, "normalMatrix");
+    uniforms[UNIFORM_PASSTHROUGH] = glGetUniformLocation(programObject, "passThrough");
+    uniforms[UNIFORM_SHADEINFRAG] = glGetUniformLocation(programObject, "shadeInFrag");
+    uniforms[UNIFORM_TEXTURE] = glGetUniformLocation(programObject, "texSampler");
+}
 
 // Load in and set up texture image (adapted from Ray Wenderlich)
 - (GLuint)setupTexture:(NSString *)fileName
