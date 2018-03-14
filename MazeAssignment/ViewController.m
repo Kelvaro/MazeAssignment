@@ -53,11 +53,11 @@ bool day;
     
 }
 - (IBAction)FogSwitch:(id)sender {
-    [glesRenderer Fog];
+    [glesRenderer FogToggle];
 }
 
 - (IBAction)Flashlight:(id)sender {
-    [glesRenderer Flashlight];
+    [glesRenderer FlashlightToggle];
 }
 
 - (IBAction)MapConsoleTrigger:(id)sender { //two double tap
@@ -69,7 +69,7 @@ bool day;
     NSLog(@"Reset Location");
 }
 - (IBAction)DayNightSwitch:(id)sender {
-    [glesRenderer ShaderToggle];
+    [glesRenderer DayNightToggle];
 
 }
 
