@@ -55,11 +55,38 @@
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="FogSwitch:" destination="To6-VY-N50" eventType="touchUpInside" id="KRP-zI-7p1"/>
+                                            <action selector="FogConsoleTrigger:" destination="To6-VY-N50" eventType="touchUpInside" id="f3u-yK-cdt"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="0.25048159246575341" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tXr-JL-TGM">
+                                <rect key="frame" x="259" y="54" width="148" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUY-TP-Gye">
+                                        <rect key="frame" x="51" y="0.0" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Linear">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="LinearFogTrigger:" destination="To6-VY-N50" eventType="touchUpInside" id="pAl-Hg-JxU"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E8c-Xc-icz">
+                                        <rect key="frame" x="34" y="32" width="80" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Exponential">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="ExponentialFogTrigger:" destination="To6-VY-N50" eventType="touchUpInside" id="fiC-uy-itD"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="0.1971318493150685" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <gestureRecognizers/>
@@ -71,6 +98,7 @@
                         </connections>
                     </glkView>
                     <connections>
+                        <outlet property="FogType" destination="tXr-JL-TGM" id="jC5-ZZ-ByE"/>
                         <outlet property="MapConsole" destination="0fA-yj-baf" id="KPc-RN-C3O"/>
                     </connections>
                 </glkViewController>

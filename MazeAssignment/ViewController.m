@@ -13,6 +13,7 @@
     
 }
 @property (strong, nonatomic) IBOutlet UIView *MapConsole;
+@property (strong, nonatomic) IBOutlet UIView *FogType;
 
 @end
 
@@ -23,6 +24,7 @@ bool day;
 - (void)viewDidLoad {
     [super viewDidLoad];
     _MapConsole.hidden=true;
+    _FogType.hidden=true;
     glesRenderer = [[Renderer alloc] init];
     GLKView *view = (GLKView *)self.view;
     [glesRenderer setup:view];
@@ -52,9 +54,18 @@ bool day;
 - (IBAction)Movement:(id)sender {
     
 }
-- (IBAction)FogSwitch:(id)sender {
-    [glesRenderer FogToggle];
+- (IBAction)FogConsoleTrigger:(id)sender {
+    _FogType.hidden=!_FogType.isHidden;
 }
+- (IBAction)LinearFogTrigger:(id)sender {
+    [glesRenderer FogToggle:'D'];
+    _FogType.hidden=true;
+}
+- (IBAction)ExponentialFogTrigger:(id)sender {
+    [glesRenderer FogToggle:'E'];
+    _FogType.hidden=true;
+}
+
 
 - (IBAction)Flashlight:(id)sender {
     [glesRenderer FlashlightToggle];

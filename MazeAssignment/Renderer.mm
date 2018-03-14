@@ -52,7 +52,7 @@ enum
 @synthesize rotAngle;
 
 bool isDay, isOn, isFoggy;
-char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fShaderStrC,*vShaderStrD,*fShaderStrD;
+char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fShaderStrC,*vShaderStrD,*fShaderStrD, *vShaderStrE,*fShaderStrE;
 
 
 - (void)dealloc
@@ -62,8 +62,8 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
 
 - (void)loadModels
 {
-//      numIndices = glesRenderer.GenCube(1.0f, &vertices, &normals, &texCoords, &indices);
-      numIndices = glesRenderer.GenQuad(1.0f, &vertices, &normals, &texCoords, &indices);
+      numIndices = glesRenderer.GenCube(1.0f, &vertices, &normals, &texCoords, &indices);
+//      numIndices = glesRenderer.GenQuad(1.0f, &vertices, &normals, &texCoords, &indices);
 }
 
 - (void)setup:(GLKView *)view
@@ -102,18 +102,18 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
     auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
     lastTime = currentTime;
     
-//    if (isRotating)
-//    {
-//        rotAngle += 0.001f * elapsedTime;
-//        if (rotAngle >= 360.0f)
-//            rotAngle = 0.0f;
-//    }
+    if (isRotating)
+    {
+        rotAngle += 0.001f * elapsedTime;
+        if (rotAngle >= 360.0f)
+            rotAngle = 0.0f;
+    }
 
-    rotAngle = -1.6;
+//    rotAngle = -1.6;
     // Perspective
     mvp = GLKMatrix4Translate(GLKMatrix4Identity, 0.0, 0.0, -5.0);
-//    mvp = GLKMatrix4Rotate(mvp, rotAngle, 1.0, 0.0, 1.0 );
-    mvp = GLKMatrix4RotateX(mvp, rotAngle);
+    mvp = GLKMatrix4Rotate(mvp, rotAngle, 1.0, 0.0, 1.0 );
+//    mvp = GLKMatrix4RotateX(mvp, rotAngle);
     normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mvp), NULL);
 
     float aspect = (float)theView.drawableWidth / (float)theView.drawableHeight;
@@ -171,6 +171,9 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
     vShaderStrD = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:"ShaderD.vsh"] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:"ShaderD.vsh"] pathExtension]] cStringUsingEncoding:1]);
     fShaderStrD = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:"ShaderD.fsh"] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:"ShaderD.fsh"] pathExtension]] cStringUsingEncoding:1]);
     
+    vShaderStrE = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:"ShaderE.vsh"] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:"ShaderE.vsh"] pathExtension]] cStringUsingEncoding:1]);
+    fShaderStrE = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:"ShaderE.fsh"] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:"ShaderE.fsh"] pathExtension]] cStringUsingEncoding:1]);
+    
     programObject = glesRenderer.LoadProgram(vShaderStrA, fShaderStrA);
     
     
@@ -227,14 +230,20 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
     uniforms[UNIFORM_TEXTURE] = glGetUniformLocation(programObject, "texSampler");
 }
 
--(void)FogToggle{
+-(void)FogToggle:(char)para{
     if(isFoggy){
         programObject = glesRenderer.LoadProgram(vShaderStrA, fShaderStrA);
         glClearColor (1.0f, 1.0f, 1.0f, 1.0f );
         isFoggy=false;
     }
     else{
-        programObject = glesRenderer.LoadProgram(vShaderStrD, fShaderStrD);
+        if(para=='D'){
+          programObject = glesRenderer.LoadProgram(vShaderStrD, fShaderStrD);
+        }
+        else if(para=='E'){
+         programObject = glesRenderer.LoadProgram(vShaderStrE, fShaderStrE);
+        }
+
         glClearColor (0.5f, 0.5f, 0.5f, 0.5f );
         isFoggy=true;
     }
