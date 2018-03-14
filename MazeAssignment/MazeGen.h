@@ -27,6 +27,7 @@ typedef struct{
 
 
 - (void) GenMaze:(int)rows cols:(int)cols;
+-(Cell) GetCell:(int)row col:(int)col;
 
 @end
 

@@ -7,7 +7,7 @@
 #import <GLKit/GLKit.h>
 #include <chrono>
 #include "GLESRenderer.hpp"
-
+#include "maze.h"
 // Uniform index.
 enum
 {
@@ -36,10 +36,9 @@ enum
     GLuint crateTexture;
     GLuint floorTexture;
     std::chrono::time_point<std::chrono::steady_clock> lastTime;
-
     GLKMatrix4 mvp, mv;
     GLKMatrix3 normalMatrix;
-
+    MazeGen *mazegen;
     float *vertices, *normals, *texCoords;
     int *indices, numIndices;
 }
@@ -94,6 +93,7 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
     glClearColor (1.0f, 1.0f, 1.0f, 1.0f );
     glEnable(GL_DEPTH_TEST);
     lastTime = std::chrono::steady_clock::now();
+    
 }
 
 - (void)update
@@ -134,8 +134,39 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
     glViewport(0, 0, (int)theView.drawableWidth, (int)theView.drawableHeight);
     glClear ( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     glUseProgram ( programObject );
+    
+    
+    for (int row = 0; row < 4; row++)
+        for (int col = 0; col < 4; col++)
+        {
+            
+            NSLog(@"drawing at %d %d", row, col);
+            
+            Cell c = [mazegen GetCell:col col:row];
+            
+            // floor
+            
+            if (c.N)
+            {
+                [self drawWall];
+            }
+            if (c.S)
+            {
+                [self drawWall];
+            }
+            if (c.W)
+            {
+                [self drawWall];
+            }
+            if (c.E)
+            {
+                [self drawWall];
+            }
+            
+        }
+    
 
-    glVertexAttribPointer ( 0, 3, GL_FLOAT,
+ /*   glVertexAttribPointer ( 0, 3, GL_FLOAT,
                            GL_FALSE, 3 * sizeof ( GLfloat ), vertices );
     glEnableVertexAttribArray ( 0 );
 
@@ -150,9 +181,30 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
     glEnableVertexAttribArray ( 3 );
     
     glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, FALSE, (const float *)mvp.m);
-    glDrawElements ( GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, indices );
+    glDrawElements ( GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, indices ); */
+    
+    
 }
-
+-(void) drawWall{
+    glVertexAttribPointer ( 0, 3, GL_FLOAT,
+                           GL_FALSE, 3 * sizeof ( GLfloat ), vertices );
+    glEnableVertexAttribArray ( 0 );
+    
+    glVertexAttrib4f ( 1, 1.0f, 1.0f, 1.0f, 1.0f );
+    
+    glVertexAttribPointer ( 2, 3, GL_FLOAT,
+                           GL_FALSE, 3 * sizeof ( GLfloat ), normals );
+    glEnableVertexAttribArray ( 2 );
+    
+    glVertexAttribPointer ( 3, 2, GL_FLOAT,
+                           GL_FALSE, 2 * sizeof ( GLfloat ), texCoords );
+    glEnableVertexAttribArray ( 3 );
+    
+    glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, FALSE, (const float *)mvp.m);
+    glDrawElements ( GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, indices );
+    
+    
+}
 
 - (bool)setupShaders
 {
