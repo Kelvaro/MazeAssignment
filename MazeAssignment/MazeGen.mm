@@ -28,10 +28,10 @@ struct MazeClass{
 
 - (void) GenMaze:(int)rows cols:(int)cols{
     
-    
+   
     mazeObj->Obj = *new Maze(rows,cols);
     mazeObj->Obj.Create();
-    
+
     /*
      
      
@@ -51,6 +51,16 @@ struct MazeClass{
      */
     
 }
+
+-(Cell) GetCell:(int)row col:(int)col{
+    MazeCell getcell = mazeObj->Obj.GetCell(row, col);
+    Cell *renderCell = new Cell{
+        getcell.northWallPresent, getcell.southWallPresent, getcell.eastWallPresent, getcell.westWallPresent
+        
+    };
+    return *renderCell;
+};
+
 
 
 
