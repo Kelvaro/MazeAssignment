@@ -15,7 +15,7 @@ uniform bool shadeInFrag;
 
 void main()
 {
-    const vec4 fogColor = vec4(1.0f, 1.0f, 1.0f, 1.0f );
+    const vec4 fogColor = vec4(0.5f, 0.5f, 0.5f, 0.5f );
     const float fogStart = 4.0;
     const float fogEnd = 6.0;
     

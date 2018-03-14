@@ -16,9 +16,9 @@
 - (void)loadModels;
 - (void)update;
 - (void)draw:(CGRect)drawRect;
-- (void)ShaderToggle;
-- (void)Flashlight;
-- (void)Fog;
+- (void)DayNightToggle;
+- (void)FlashlightToggle;
+- (void)FogToggle;
 @end
 
 #endif /* Renderer_h */
