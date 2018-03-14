@@ -135,11 +135,11 @@ int GLESRenderer::GenQuad(float scale, float **vertices, float **normals, float 
     
     float cubeNormals[] =
     {
-        0.0f, -1.0f, 0.0f,
-        0.0f, -1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
         
-        0.0f, -1.0f, 0.0f,
-        0.0f, -1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
     };
     
     float cubeTex[] =
@@ -181,8 +181,8 @@ int GLESRenderer::GenQuad(float scale, float **vertices, float **normals, float 
     {
         GLuint cubeIndices[] =
         {
-            0, 2, 1,
-            0, 3, 2,
+            0, 1, 2,
+            2, 3, 0,
         };
         
         *indices = (int *)malloc ( sizeof ( int ) * numIndices );
