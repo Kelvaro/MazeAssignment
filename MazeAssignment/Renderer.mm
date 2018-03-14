@@ -71,7 +71,8 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
     isOn=false;
     isFoggy=false;
     view.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
-    
+    mazegen = [[MazeGen alloc] init];
+    [mazegen GenMaze:4 cols:4];
     if (!view.context) {
         NSLog(@"Failed to create ES context");
     }
@@ -140,7 +141,7 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
         for (int col = 0; col < 4; col++)
         {
             
-            NSLog(@"drawing at %d %d", row, col);
+           // NSLog(@"drawing at %d %d", row, col);
             
             Cell c = [mazegen GetCell:col col:row];
             
@@ -149,24 +150,28 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
             if (c.N)
             {
                 [self drawWall];
+                  NSLog(@"North at %d %d", row, col);
             }
             if (c.S)
             {
                 [self drawWall];
+                  NSLog(@"South at %d %d", row, col);
             }
             if (c.W)
             {
                 [self drawWall];
+                  NSLog(@"West at %d %d", row, col);
             }
             if (c.E)
             {
                 [self drawWall];
+                  NSLog(@"East at %d %d", row, col);
             }
             
         }
     
 
- /*   glVertexAttribPointer ( 0, 3, GL_FLOAT,
+   glVertexAttribPointer ( 0, 3, GL_FLOAT,
                            GL_FALSE, 3 * sizeof ( GLfloat ), vertices );
     glEnableVertexAttribArray ( 0 );
 
@@ -181,8 +186,7 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
     glEnableVertexAttribArray ( 3 );
     
     glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, FALSE, (const float *)mvp.m);
-    glDrawElements ( GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, indices ); */
-    
+    glDrawElements ( GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, indices );
     
 }
 -(void) drawWall{
