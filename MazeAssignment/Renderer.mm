@@ -64,7 +64,7 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
 
 - (void)loadModels
 {
-    numIndices = glesRenderer.GenCube(1.0f, &vertices, &normals, &texCoords, &indices);
+//    numIndices = glesRenderer.GenCube(1.0f, &vertices, &normals, &texCoords, &indices);
     quadNumIndices = glesRenderer.GenQuad(1.0f, &quadVertices, &quadNormals, &quadTexCoords, &quadIndices);
 }
 
@@ -94,11 +94,7 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
     wallTextureTwo=[self setupTexture:@"wall2.jpg"];
     wallTextureThree=[self setupTexture:@"wall3.jpg"];
     wallTextureFour=[self setupTexture:@"wall4.jpg"];
-
-    
-
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, crateTexture);
+   
     glUniform1i(uniforms[UNIFORM_TEXTURE], 0);
 
     glClearColor (1.0f, 1.0f, 1.0f, 1.0f );
@@ -111,6 +107,7 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
 
 - (void)update
 {
+    
     auto currentTime = std::chrono::steady_clock::now();
     auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
     lastTime = currentTime;
@@ -169,8 +166,11 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
     glVertexAttribPointer ( 3, 2, GL_FLOAT, GL_FALSE, 2 * sizeof ( GLfloat ), texCoords );
     glEnableVertexAttribArray ( 3 );
     
-    glDrawElements ( GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, indices );
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, crateTexture);
     
+    glDrawElements ( GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, indices );
+    bool nCont=false, sCont=false, eCont=false, wCont=false;
     for (int row = 0; row < 4; row++)
         for (int col = 0; col < 4; col++)
         {
@@ -184,7 +184,7 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
             mv = GLKMatrix4Multiply(v, m);
             mvp = GLKMatrix4Multiply(p, mv);
             normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mv), NULL);
-            [self drawWall];
+            [self drawWall:0];
             
             // walls
             if (c.N)
@@ -194,7 +194,20 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
                 mv = GLKMatrix4Multiply(v, m);
                 mvp = GLKMatrix4Multiply(p, mv);
                 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mv), NULL);
-                [self drawWall];
+                
+                if(c.E){
+                    [self drawWall:1];
+                }
+                else if(c.W){
+                    [self drawWall:2];
+                }
+                else if (c.E&&c.W){
+                    [self drawWall:3];
+                }
+                else{
+                    [self drawWall:4];
+                }
+
             }
             if (c.S)
             {
@@ -203,8 +216,21 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
                 mv = GLKMatrix4Multiply(v, m);
                 mvp = GLKMatrix4Multiply(p, mv);
                 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mv), NULL);
-                [self drawWall];
+               
+                if(c.W){
+                    [self drawWall:1];
+                }
+                else if(c.E){
+                    [self drawWall:2];
+                }
+                else if (c.E&&c.W){
+                    [self drawWall:3];
+                }
+                else{
+                    [self drawWall:4];
+                }
             }
+
             if (c.W)
             {
                 GLKMatrix4 m = GLKMatrix4MakeTranslation(row, 0.0, -col);
@@ -212,8 +238,21 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
                 mv = GLKMatrix4Multiply(v, m);
                 mvp = GLKMatrix4Multiply(p, mv);
                 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mv), NULL);
-                [self drawWall];
+               
+                if(c.N){
+                    [self drawWall:1];
+                }
+                else if(c.S){
+                    [self drawWall:2];
+                }
+                else if (c.N&&c.S){
+                    [self drawWall:3];
+                }
+                else{
+                    [self drawWall:4];
+                }
             }
+
             if (c.E)
             {
                 GLKMatrix4 m = GLKMatrix4MakeTranslation(row, 0.0, -col);
@@ -221,13 +260,27 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
                 mv = GLKMatrix4Multiply(v, m);
                 mvp = GLKMatrix4Multiply(p, mv);
                 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mv), NULL);
-                [self drawWall];
+                
+                if(c.N){
+                    [self drawWall:1];
+                }
+                else if(c.S){
+                    [self drawWall:2];
+                }
+                else if (c.N&&c.S){
+                    [self drawWall:3];
+                }
+                else{
+                    [self drawWall:4];
+                }
             }
             
         }
+    
+
 }
 
--(void) drawWall{
+-(void) drawWall:(int)inp{
     glVertexAttrib4f ( 1, 1.0f, 1.0f, 1.0f, 1.0f );
     glVertexAttribPointer ( 0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof ( GLfloat ), quadVertices );
     glEnableVertexAttribArray ( 0 );
@@ -240,6 +293,26 @@ char *vShaderStrA, *fShaderStrA, *vShaderStrB, *fShaderStrB, *vShaderStrC, *fSha
     glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEW_MATRIX], 1, FALSE, (const float *)mv.m);
     glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, normalMatrix.m);
     
+    if(inp==0){ //floor
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, floorTexture);
+    }
+    else if(inp==1){
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, wallTextureOne);
+    }
+    else if (inp==2) {
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, wallTextureTwo);
+    }
+    else if (inp==3){
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, wallTextureThree);
+    }
+    else{
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, wallTextureFour);
+    }
     glDrawElements ( GL_TRIANGLES, quadNumIndices, GL_UNSIGNED_INT, quadIndices );
     
     
